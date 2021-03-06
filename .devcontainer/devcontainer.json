@@ -1,8 +1,0 @@
-{
-  "dockerComposeFile": "docker-compose.yml",
-  "workspaceFolder": "/workspace",
-  "service": "app",
-  "extensions": ["esbenp.prettier-vscode"],
-  "forwardPorts": [8000, 5432],
-  "postCreateCommand": "npm i"
-}

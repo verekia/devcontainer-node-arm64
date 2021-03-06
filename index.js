@@ -1,3 +1,5 @@
+require('dotenv/config')
+
 const express = require('express')
 
 const knex = require('knex')({
@@ -9,7 +11,7 @@ const knex = require('knex')({
 })
 
 const app = express()
-const port = 8000
+const port = process.env.PORT
 
 app.get('/create-table', async (req, res) => {
   console.log('creating table...')
