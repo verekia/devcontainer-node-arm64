@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   dev:
+    container_name: dev
     image: arm64v8/node:15.11.0-buster
     volumes:
       - .:/workspace:cached
@@ -11,6 +12,7 @@ services:
       - '${PORT}:${PORT}'
 
   db:
+    container_name: db
     image: arm64v8/postgres:13.2
     volumes:
       - ./db-data:/var/lib/postgresql/data
@@ -22,6 +24,7 @@ services:
       - '${LOCAL_DB_PORT}:5432'
 
   db-testing:
+    container_name: db-testing
     image: arm64v8/postgres:13.2
     environment:
       POSTGRES_DB: postgres
