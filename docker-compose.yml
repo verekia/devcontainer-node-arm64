@@ -6,7 +6,7 @@ services:
     volumes:
       - .:/workspace:cached
     working_dir: /workspace
-    command: bash -c "npm i && tail -f /dev/null & wait"
+    command: bash -c "npm i && sleep infinity"
     ports:
       - '${PORT}:${PORT}'
 
