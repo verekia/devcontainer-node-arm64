@@ -1,13 +1,12 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  dev:
+    image: arm64v8/node:15.11.0-buster
     volumes:
       - .:/workspace:cached
-    command: sleep infinity
+    working_dir: /workspace
+    command: bash -c "npm i && tail -f /dev/null & wait"
     ports:
       - '${PORT}:${PORT}'
 

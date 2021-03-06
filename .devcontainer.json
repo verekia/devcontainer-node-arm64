@@ -1,6 +1,6 @@
 {
   "dockerComposeFile": "docker-compose.yml",
   "workspaceFolder": "/workspace",
-  "service": "app",
+  "service": "dev",
   "extensions": ["esbenp.prettier-vscode"]
 }
