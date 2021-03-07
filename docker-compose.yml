@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   dev:
-    container_name: dev
     image: arm64v8/node:15.11.0-buster
     volumes:
       - .:/workspace:cached
@@ -12,23 +11,13 @@ services:
       - '${PORT}:${PORT}'
 
   db:
-    container_name: db
-    image: arm64v8/postgres:13.2
+    image: verekia/postgres:arm64-13.2-alpine
     volumes:
       - ./db-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
     ports:
       - '${LOCAL_DB_PORT}:5432'
 
   db-testing:
-    container_name: db-testing
-    image: arm64v8/postgres:13.2
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
+    image: verekia/postgres:arm64-13.2-alpine
     ports:
       - '${LOCAL_DB_TESTING_PORT}:5432'
