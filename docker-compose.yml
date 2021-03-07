@@ -7,11 +7,9 @@ services:
     volumes:
       - .:/workspace:cached
     command: sh -c "npm i && sleep infinity"
-    env_file:
-      - ./.env
-      - ./.env.local
+    env_file: .env.local
     ports:
-      - '${PORT}:${PORT}'
+      - ${PORT}:${PORT}
 
   db:
     image: postgres:13.2
@@ -19,18 +17,14 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - ./db-data:/var/lib/postgresql/data
-    env_file:
-      - ./.env
-      - ./.env.local
+    env_file: .env.local
     ports:
-      - '${LOCAL_DB_PORT}:5432'
+      - ${LOCAL_DB_PORT}:5432
 
   db-testing:
     image: postgres:13.2
     environment:
       POSTGRES_PASSWORD: password
-    env_file:
-      - ./.env
-      - ./.env.local
+    env_file: .env.local
     ports:
-      - '${LOCAL_DB_TESTING_PORT}:5432'
+      - ${LOCAL_DB_TESTING_PORT}:5432
