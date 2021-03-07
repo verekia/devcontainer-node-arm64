@@ -5,7 +5,7 @@ const express = require('express')
 const knex = require('knex')({
   client: 'pg',
   // connection: 'postgresql://root:password@127.0.0.1:5432/postgres',
-  connection: `postgresql://root:password@host.docker.internal:${
+  connection: `postgresql://postgres:password@host.docker.internal:${
     process.env.DB_PORT || '5432'
   }/postgres`,
 })

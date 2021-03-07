@@ -2,22 +2,26 @@ version: '3.8'
 
 services:
   dev:
-    image: arm64v8/node:15.11.0-buster
+    image: node:14.16.0
+    working_dir: /workspace
     volumes:
       - .:/workspace:cached
-    working_dir: /workspace
-    command: bash -c "npm i && sleep infinity"
+    command: sh -c "npm i && sleep infinity"
     ports:
       - '${PORT}:${PORT}'
 
   db:
-    image: verekia/postgres:arm64-13.2-alpine
+    image: postgres:13.2
+    environment:
+      POSTGRES_PASSWORD: password
     volumes:
       - ./db-data:/var/lib/postgresql/data
     ports:
       - '${LOCAL_DB_PORT}:5432'
 
   db-testing:
-    image: verekia/postgres:arm64-13.2-alpine
+    image: postgres:13.2
+    environment:
+      POSTGRES_PASSWORD: password
     ports:
       - '${LOCAL_DB_TESTING_PORT}:5432'
