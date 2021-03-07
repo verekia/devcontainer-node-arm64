@@ -8,8 +8,8 @@ services:
       - .:/workspace:cached
     command: sh -c "npm i && sleep infinity"
     env_file:
-      - .env
-      - .env.local
+      - ./.env
+      - ./.env.local
     ports:
       - '${PORT}:${PORT}'
 
@@ -20,8 +20,8 @@ services:
     volumes:
       - ./db-data:/var/lib/postgresql/data
     env_file:
-      - .env
-      - .env.local
+      - ./.env
+      - ./.env.local
     ports:
       - '${LOCAL_DB_PORT}:5432'
 
@@ -30,7 +30,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
     env_file:
-      - .env
-      - .env.local
+      - ./.env
+      - ./.env.local
     ports:
       - '${LOCAL_DB_TESTING_PORT}:5432'
