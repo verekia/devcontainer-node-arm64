@@ -1,30 +1,27 @@
 version: '3.8'
 
 services:
-  dev:
-    image: node:14.16.0
+  dev-workspace:
+    image: node:14.16.0-alpine
     working_dir: /workspace
     volumes:
       - .:/workspace:cached
     command: sh -c "npm i && sleep infinity"
-    env_file: .env.local
     ports:
-      - ${PORT}:${PORT}
+      - ${PORT:-8000}:${PORT:-8000}
 
-  db:
-    image: postgres:13.2
+  dev-db:
+    image: postgres:13.2-alpine
     environment:
       POSTGRES_PASSWORD: password
     volumes:
       - ./db-data:/var/lib/postgresql/data
-    env_file: .env.local
     ports:
-      - ${LOCAL_DB_PORT}:5432
+      - ${DEV_DB_PORT:-5432}:5432
 
-  db-testing:
-    image: postgres:13.2
+  testing-db:
+    image: postgres:13.2-alpine
     environment:
       POSTGRES_PASSWORD: password
-    env_file: .env.local
     ports:
-      - ${LOCAL_DB_TESTING_PORT}:5432
+      - ${TESTING_DB_PORT:-5433}:5432
